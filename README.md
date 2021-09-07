@@ -1,1 +1,1 @@
-This project is created with the purpose to teach Spring Data Jpa/Hibernate to interns.
+This project is created with the purpose to teach Spring Data JPA/Hibernate to interns.
