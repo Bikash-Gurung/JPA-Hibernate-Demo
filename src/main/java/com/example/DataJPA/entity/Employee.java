@@ -1,7 +1,10 @@
 package com.example.DataJPA.entity;
 
 import com.example.DataJPA.enums.Gender;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Id;
 import javax.persistence.Column;
@@ -14,6 +17,9 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
 
     @Id
