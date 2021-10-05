@@ -37,7 +37,7 @@ public class DataJpaApplication {
 					  .forEach(it -> System.out.println(it.toString()));
 
 			//fetch employee by id
-			Employee employeeFromDB = repository.getById(1L);
+			Employee employeeFromDB = repository.findById(1L).get();
 			System.out.println(employeeFromDB.toString());
 
 			//fetch employee by last name
