@@ -1,8 +1,6 @@
 package com.example.DataJPA;
 
-import com.example.DataJPA.entity.Employee;
-import com.example.DataJPA.enums.Gender;
-import com.example.DataJPA.repository.EmployeeRepository;
+import com.example.DataJPA.repository.SalaryDao;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,39 +11,18 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 public class DataJpaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DataJpaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DataJpaApplication.class, args);
+    }
 
-	@Bean
-	public CommandLineRunner demoEmployeeService(EmployeeRepository repository) {
-		return (args) -> {
-			//save a employee
-			Employee employee = Employee.builder()
-										.firsName("FirstName")
-										.lastName("LastName")
-										.address("addressLine1")
-										.age(20)
-										.gender(Gender.MALE)
-										.build();
+    @Bean
+    public CommandLineRunner demoEmployeeService(SalaryDao dao) {
+        return (args) -> {
+            //using salary dao
 
-			repository.save(employee);
+            dao.findBySalaryAndBonus(40000, 30000).stream()
+               .forEach(it -> System.out.println(it.toString()));
 
-			//fetch all the employee
-			repository.findAll()
-					  .stream()
-					  .forEach(it -> System.out.println(it.toString()));
-
-			//fetch employee by id
-			Employee employeeFromDB = repository.findById(1L).get();
-			System.out.println(employeeFromDB.toString());
-
-			//fetch employee by last name
-			repository.findEmployeeByLastName("LastName")
-					  .stream()
-					  .forEach(it -> System.out.println(it.toString()));
-
-		};
-	}
-
+        };
+    }
 }

@@ -5,6 +5,8 @@ import com.example.DataJPA.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class EmployeeService {
 
@@ -15,5 +17,10 @@ public class EmployeeService {
     public Employee findById(Long employeeId) {
         return repository.findById(employeeId)
                          .orElseThrow(() -> new InternalError("Employee with given id not found."));
+    }
+
+    @Transactional
+    public  void update() {
+         repository.updateUsingJPQL(50, 1L);
     }
 }
